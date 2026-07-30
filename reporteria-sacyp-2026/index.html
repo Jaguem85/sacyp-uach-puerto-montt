@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reportería SACyP 2026 | UACh Sede Puerto Montt</title>
+  <style>
+    :root {
+      --vino: #7b1e3a;
+      --borgona: #8d1738;
+      --azul-profundo: #252525;
+      --teal: #2f6f6f;
+      --oliva: #66783a;
+      --dorado: #b97924;
+      --gris-fondo: #f6f3f2;
+      --gris-linea: #e7e2e1;
+      --gris-suave: #f0eceb;
+      --texto: #262626;
+      --muted: #666666;
+      --blanco: #ffffff;
+      --sombra: 0 14px 34px rgba(32, 22, 25, 0.11);
+      --radio: 8px;
+      --max: 1320px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--gris-fondo);
+      color: var(--texto);
+      font-family: Montserrat, "Century Gothic", "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      line-height: 1.42;
+    }
+
+    a, button, input, select { font: inherit; }
+    a { color: inherit; }
+    button { cursor: pointer; }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 3px solid rgba(47, 111, 111, 0.32);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 12px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: var(--radio);
+      background: var(--azul-profundo);
+      color: var(--blanco);
+      text-decoration: none;
+    }
+
+    .skip-link:focus { left: 12px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid var(--gris-linea);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 210px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      display: block;
+      width: 112px;
+      height: auto;
+    }
+
+    .brand span {
+      color: var(--teal);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 18px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .nav-links a {
+      flex: 0 0 auto;
+      color: #333333;
+      font-size: 0.86rem;
+      font-weight: 850;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover, .nav-links a.activo { color: var(--borgona); }
+
+    main { overflow: hidden; }
+    section { padding: 68px 28px; scroll-margin-top: 92px; }
+    .contenedor { max-width: var(--max); margin: 0 auto; }
+
+    .hero {
+      position: relative;
+      min-height: 680px;
+      display: grid;
+      align-items: center;
+      background: var(--blanco);
+      isolation: isolate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 32vw;
+      min-width: 340px;
+      background: var(--borgona);
+      clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+      align-items: center;
+      gap: 44px;
+    }
+
+    .hero-logo {
+      width: clamp(230px, 25vw, 330px);
+      height: auto;
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow, .section-index {
+      margin: 0 0 14px;
+      color: var(--teal);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 900px;
+      color: var(--borgona);
+      font-size: clamp(2.8rem, 6.6vw, 5.5rem);
+      font-weight: 900;
+    }
+
+    h2 {
+      max-width: 860px;
+      color: var(--azul-profundo);
+      font-size: clamp(1.65rem, 3.2vw, 3rem);
+      font-weight: 900;
+    }
+
+    h3 {
+      color: var(--azul-profundo);
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .subtitulo {
+      max-width: 760px;
+      margin: 24px 0 0;
+      color: #444444;
+      font-size: clamp(1rem, 1.8vw, 1.26rem);
+    }
+
+    .source-note {
+      max-width: 820px;
+      margin: 22px 0 0;
+      padding-left: 16px;
+      border-left: 4px solid var(--teal);
+      color: var(--muted);
+    }
+
+    .path-code {
+      display: block;
+      margin-top: 10px;
+      color: #686868;
+      font-family: "Cascadia Mono", Consolas, monospace;
+      font-size: 0.78rem;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-panel {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+    }
+
+    .hero-kpi {
+      min-height: 104px;
+      padding: 20px 24px;
+      border-radius: var(--radio);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--sombra);
+      border-left: 6px solid var(--accent, var(--teal));
+    }
+
+    .hero-kpi span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-kpi strong {
+      display: block;
+      margin-top: 6px;
+      color: var(--borgona);
+      font-size: 2.1rem;
+      line-height: 1;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .section-head p {
+      max-width: 780px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .note-box {
+      padding: 14px 16px;
+      border-left: 5px solid var(--teal);
+      background: rgba(47, 111, 111, 0.08);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) 230px;
+      gap: 14px;
+      align-items: end;
+      padding: 16px;
+      border: 1px solid var(--gris-linea);
+      border-radius: var(--radio);
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--azul-profundo);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid #d8d1d0;
+      border-radius: var(--radio);
+      background: var(--blanco);
+      color: var(--texto);
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .filter-row button {
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid #ddd5d3;
+      border-radius: 999px;
+      background: var(--blanco);
+      color: #3e3e3e;
+      font-size: 0.84rem;
+      font-weight: 850;
+    }
+
+    .filter-row button[aria-pressed="true"] {
+      border-color: var(--borgona);
+      background: rgba(141, 23, 56, 0.08);
+      color: var(--borgona);
+    }
+
+    .dimension-switch {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 6px;
+      border: 1px solid var(--gris-linea);
+      border-radius: var(--radio);
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .dimension-switch button {
+      min-height: 40px;
+      padding: 9px 13px;
+      border: 1px solid transparent;
+      border-radius: var(--radio);
+      background: transparent;
+      color: var(--pizarra);
+      font-size: 0.86rem;
+      font-weight: 900;
+    }
+
+    .dimension-switch button[aria-pressed="true"] {
+      border-color: rgba(141, 23, 56, 0.18);
+      background: var(--borgona);
+      color: var(--blanco);
+    }
+
+    .status-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .group-card, .report-card, .method-card, .glossary-card {
+      border: 1px solid var(--gris-linea);
+      border-radius: var(--radio);
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .group-card {
+      padding: 18px;
+    }
+
+    .group-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--borgona);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .group-card span {
+      color: var(--azul-profundo);
+      font-size: 0.86rem;
+      font-weight: 900;
+    }
+
+    .group-card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .mini-bar {
+      height: 8px;
+      overflow: hidden;
+      margin-top: 14px;
+      border-radius: 999px;
+      background: var(--gris-suave);
+    }
+
+    .mini-bar i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+    }
+
+    .report-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .organization-block {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .organization-head {
+      padding: 18px;
+      border: 1px solid var(--gris-linea);
+      border-left: 6px solid var(--accent);
+      border-radius: var(--radio);
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .organization-head h3 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .organization-head p {
+      max-width: 900px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .report-card {
+      overflow: hidden;
+    }
+
+    .report-card[hidden], tr[hidden] { display: none !important; }
+
+    .report-summary {
+      min-height: 112px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 20px;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .report-summary::-webkit-details-marker { display: none; }
+
+    .summary-main {
+      display: grid;
+      gap: 8px;
+    }
+
+    .career-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .career-line h3 {
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .metric-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .metric-chip {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: var(--radio);
+      background: var(--gris-suave);
+      color: #3f3f3f;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .summary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .btn {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid #d8d1d0;
+      border-radius: var(--radio);
+      background: var(--blanco);
+      color: var(--azul-profundo);
+      font-size: 0.84rem;
+      font-weight: 900;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn.primary {
+      border-color: var(--borgona);
+      background: var(--borgona);
+      color: var(--blanco);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(32, 22, 25, 0.1);
+    }
+
+    .expand-indicator {
+      width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    details[open] .expand-indicator { transform: rotate(45deg); }
+
+    .report-body {
+      padding: 0 20px 22px;
+      border-top: 1px solid var(--gris-linea);
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+      gap: 18px;
+      padding-top: 20px;
+    }
+
+    .interpretation {
+      padding: 16px;
+      border-left: 5px solid var(--accent);
+      border-radius: var(--radio);
+      background: var(--soft);
+    }
+
+    .interpretation p {
+      margin: 8px 0 0;
+      color: #444444;
+    }
+
+    .download-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .accordion-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .data-accordion {
+      border: 1px solid var(--gris-linea);
+      border-radius: var(--radio);
+      background: #fffdfd;
+      overflow: hidden;
+    }
+
+    .data-accordion summary {
+      padding: 13px 14px;
+      color: var(--azul-profundo);
+      font-weight: 900;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .data-accordion summary::-webkit-details-marker { display: none; }
+
+    .data-accordion summary::after {
+      content: "+";
+      float: right;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .data-accordion[open] summary::after { content: "-"; }
+
+    .table-wrap {
+      overflow-x: auto;
+      padding: 0 14px 14px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--gris-linea);
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.88rem;
+    }
+
+    th {
+      color: var(--azul-profundo);
+      background: #f4f0ef;
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    td:first-child {
+      color: var(--azul-profundo);
+      font-weight: 850;
+    }
+
+    tbody tr:last-child td { border-bottom: 0; }
+
+    .empty-table {
+      margin: 0;
+      padding: 0 14px 14px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .group-expander {
+      display: grid;
+      gap: 10px;
+    }
+
+    .group-expander details {
+      border: 1px solid var(--gris-linea);
+      border-radius: var(--radio);
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .group-expander summary {
+      padding: 16px 18px;
+      color: var(--azul-profundo);
+      font-weight: 900;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .group-expander summary::-webkit-details-marker { display: none; }
+    .group-expander summary::after { content: "+"; float: right; color: var(--accent); }
+    .group-expander details[open] summary::after { content: "-"; }
+
+    .group-expander .inside {
+      padding: 0 18px 18px;
+      color: var(--muted);
+    }
+
+    .download-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .download-list a {
+      justify-content: space-between;
+    }
+
+    .full-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--gris-linea);
+      border-radius: var(--radio);
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .full-table-wrap table { min-width: 1100px; }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .method-card, .glossary-card {
+      padding: 18px;
+    }
+
+    .method-card p, .glossary-card p, .glossary-card li {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .glossary-card {
+      margin-top: 18px;
+    }
+
+    .glossary-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 18px;
+      padding-left: 18px;
+    }
+
+    .presentation-controls {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border-radius: var(--radio);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: var(--sombra);
+      backdrop-filter: blur(10px);
+    }
+
+    .presentation-controls button {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: var(--radio);
+      background: var(--borgona);
+      color: var(--blanco);
+      font-size: 1.25rem;
+      font-weight: 900;
+    }
+
+    .presentation-status {
+      min-width: 44px;
+      color: var(--azul-profundo);
+      font-size: 0.86rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .footer {
+      padding: 28px;
+      border-top: 1px solid var(--gris-linea);
+      background: var(--blanco);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1020px) {
+      .hero::after { opacity: 0.1; clip-path: none; width: 100%; }
+      .hero-grid, .section-head, .toolbar, .body-grid, .method-grid { grid-template-columns: 1fr; }
+      .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .report-summary { grid-template-columns: 1fr; }
+      .summary-actions { justify-content: flex-start; }
+    }
+
+    @media (max-width: 700px) {
+      section { padding: 48px 18px; scroll-margin-top: 150px; }
+      .hero { min-height: auto; padding-top: 46px; }
+      .nav-inner { flex-direction: column; align-items: flex-start; padding: 10px 18px; }
+      .nav-links { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; overflow-x: visible; }
+      .nav-links a { white-space: normal; }
+      .brand img { width: 104px; }
+      .overview-grid, .download-list, .glossary-list { grid-template-columns: 1fr; }
+      .hero-panel { align-content: start; }
+      .presentation-controls { right: 12px; bottom: 12px; }
+    }
+
+    @media print {
+      .topbar, .toolbar, .filter-row, .dimension-switch, .presentation-controls, .summary-actions { display: none !important; }
+      body, .hero { background: #ffffff; }
+      .hero::after { display: none; }
+      .report-card, .group-card, .method-card, .glossary-card, .full-table-wrap { box-shadow: none; }
+      details { page-break-inside: avoid; }
+      details:not([open]) > *:not(summary) { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+  <header class="topbar" aria-label="Navegación interna">
+    <div class="nav-inner">
+      <a class="brand" href="#inicio" aria-label="Universidad Austral de Chile, Sede Puerto Montt">
+        <img src="logo-uach-completo.svg" alt="Universidad Austral de Chile">
+        <span>Sede Puerto Montt</span>
+      </a>
+      <nav class="nav-links" aria-label="Secciones de reportería">
+        <a href="#reportes">Reportes</a>
+        <a href="#metodo">Alcance</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="contenedor hero-grid">
+        <div>
+          <img class="hero-logo" src="logo-uach-completo.svg" alt="Universidad Austral de Chile">
+          <p class="eyebrow">Universidad Austral de Chile | Sede Puerto Montt</p>
+          <h1>Reportería SACyP 2026</h1>
+          <p class="subtitulo">Navegación ejecutiva de indicadores de progresión académica y curricular por carrera/programa de pregrado.</p>
+          <p class="source-note"><strong>Elaborado por Juan A. Guerrero Millalonco.</strong><br>Encargado de Aseguramiento de la Calidad y Acreditación Institucional.</p>
+        </div>
+        <aside class="hero-panel" aria-label="Indicadores del inventario">
+          <div class="hero-kpi" style="--accent: var(--teal)">
+            <span>Reportes disponibles</span>
+            <strong>17</strong>
+          </div>
+          <div class="hero-kpi" style="--accent: var(--borgona)">
+            <span>Información actualizada a</span>
+            <strong>02-07-2026</strong>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="reportes">
+      <div class="contenedor">
+        <div class="section-head">
+          <div>
+            <p class="section-index">01 | Exploración por carrera</p>
+            <h2>Reportes expandibles</h2>
+            <p>Cada ficha abre una lectura rápida, las tablas del documento y accesos para abrir o descargar el PDF. Puede navegar por organización o por carrera/programa.</p>
+          </div>
+          <div class="note-box">Las tablas se extraen del mismo reporte PDF de cada carrera. Los textos interpretativos describen lo que el documento permite mirar, sin comparar con fuentes externas.</div>
+        </div>
+
+        <div class="dimension-switch" id="dimensionSwitch" aria-label="Seleccionar dimensión de navegación">
+          <button type="button" data-view="organization" aria-pressed="true">Dimensión organización</button>
+          <button type="button" data-view="career" aria-pressed="false">Dimensión carrera/programa</button>
+        </div>
+
+        <div class="toolbar" aria-label="Controles de exploración">
+          <div class="field">
+            <label for="searchInput">Buscar</label>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="Carrera, grupo, indicador o código de asignatura">
+          </div>
+          <div class="field">
+            <label for="sortSelect">Orden</label>
+            <select id="sortSelect">
+              <option value="career">Carrera A-Z</option>
+              <option value="group">Organización</option>
+              <option value="critical">Más asignaturas críticas</option>
+              <option value="matricula">Mayor matrícula total 2026</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-row" id="groupFilters" aria-label="Filtrar por organización"></div>
+        <div class="status-line">
+          <span id="resultStatus"></span>
+        </div>
+        <div class="report-list" id="reportList"></div>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <div class="contenedor">
+        <div class="section-head">
+          <div>
+            <p class="section-index">02 | Alcance y glosario</p>
+            <h2>Cómo leer este visor</h2>
+            <p>Notas de trazabilidad para interpretar la información sin perder de vista la fuente original.</p>
+          </div>
+        </div>
+        <div class="method-grid">
+          <article class="method-card">
+            <h3>Fuente</h3>
+            <p>Se revisaron 17 PDF de reportería SACyP ubicados en la carpeta indicada por la usuaria.</p>
+          </article>
+          <article class="method-card">
+            <h3>Tratamiento</h3>
+            <p>Se extrajeron tablas internas, se normalizaron nombres de carreras y se copiaron los PDF a una carpeta local para descarga.</p>
+          </article>
+          <article class="method-card">
+            <h3>Límite</h3>
+            <p>No se incorporan cruces, semáforos externos ni comparación con planes, matrices u otros documentos institucionales.</p>
+          </article>
+        </div>
+        <article class="glossary-card">
+          <h3>Glosario del reporte</h3>
+          <ul class="glossary-list" id="glossaryList"></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Reportería SACyP 2026 | Visor local para Vicerrectoria de sede y equipos de gestión de carreras en UACh Sede Puerto Montt.
+  </footer>
+
+  <div class="presentation-controls" aria-label="Controles de navegación">
+    <button type="button" id="prevSection" aria-label="Sección anterior">‹</button>
+    <span class="presentation-status" id="presentationStatus">1/3</span>
+    <button type="button" id="nextSection" aria-label="Sección siguiente">›</button>
+  </div>
+
+  <script>
+    const payload = {"sourceFolder": "C:\\Users\\juana\\OneDrive - Universidad Austral de Chile\\ASEGURAMIENTO DE LA CALIDAD Y ACREDITACIÓN INSTITUCIONAL\\RIAC\\Documentos institucionales\\Reporteria SACyP", "generated": "30-07-2026 15:53", "latestLabel": "02-07-2026", "groups": {"Instituto de Gestión e Industria": {"color": "#8d1738", "soft": "rgba(141, 23, 56, 0.08)", "summary": "Integra Administración Pública, Ingeniería Civil Industrial, Ingeniería Comercial e Ingeniería en Información y Control de Gestión.", "focus": "Permite revisar indicadores de progresión académica y curricular de carreras asociadas a gestión, industria y sistemas de información."}, "Instituto de Especialidades Pedagógicas": {"color": "#2f6f6f", "soft": "rgba(47, 111, 111, 0.09)", "summary": "Integra las pedagogías en Educación Básica, Educación Diferencial, Educación Parvularia y Matemáticas.", "focus": "Facilita la consulta de indicadores de formación inicial docente para apoyar comités de carrera y decisiones formativas."}, "Área de Ciencias de la Salud": {"color": "#66783a", "soft": "rgba(102, 120, 58, 0.1)", "summary": "Integra Enfermería, Fonoaudiología, Tecnología Médica y Terapia Ocupacional.", "focus": "Ordena la lectura de carreras del ámbito sanitario, clínico y de rehabilitación."}, "Instituto de Psicología": {"color": "#b97924", "soft": "rgba(185, 121, 36, 0.1)", "summary": "Integra Psicología.", "focus": "Concentra la reportería de Psicología para revisión de indicadores de progresión académica y curricular."}, "Instituto de Ciencias Jurídicas": {"color": "#252525", "soft": "rgba(37, 37, 37, 0.07)", "summary": "Concentra el área legal y el desarrollo de Derecho.", "focus": "Organiza la consulta del reporte de Derecho y sus indicadores de progresión académica y curricular."}, "Escuelas de Ciencias Sociales": {"color": "#7b1e3a", "soft": "rgba(123, 30, 58, 0.08)", "summary": "Integra Trabajo Social y Arqueología.", "focus": "Agrupa la reportería de carreras del ámbito social para revisar trayectorias académicas y curriculares."}, "Instituto de Acuicultura e Ingeniería Ambiental": {"color": "#4f6d7a", "soft": "rgba(79, 109, 122, 0.1)", "summary": "Integra Ingeniería Ambiental.", "focus": "Concentra la reportería de Ingeniería Ambiental para seguimiento académico y curricular."}}, "documents": [{"career": "Administración Pública", "group": "Instituto de Gestión e Industria", "file": "2026 REPORTERIA SACYP_ADMINISTRACIÓN PÚBLICA_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_ADMINISTRACIÓN PÚBLICA_PM.pdf", "sizeKB": 186.6, "modified": 1783007148.463584, "modifiedLabel": "02-07-2026 11:45", "pages": 5, "metrics": {"matriculaNueva2026": "68", "matriculaTotal2026": "212", "mujeresTotal2026": "66%", "ocupacionRegular2026": "120%", "retencionPrimerAno2025": "94%", "retencionTotal2025": "94%", "titulacionTotal2021": "-", "eficiente2025": "16", "alumnosRegulares2025": "44"}, "narrative": "Matrícula total 2026: 212. Ingreso nuevo 2026: 68. Ocupación regular 2026: 120%. Retención de 1er año cohorte 2025: 94%. El reporte identifica 4 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "30", "41", "39", "47", "68"], ["% Mujeres", "50%", "54%", "56%", "62%", "66%"], ["Matrícula admisión regular (prueba)", "28", "40", "35", "40", "54"], ["Matrícula admisión especial PACE", "0", "0", "0", "0", "0"], ["Matrícula Ingreso Especial RAE", "2", "1", "4", "7", "14"], ["Matrícula Total", "186", "198", "182", "186", "212"], ["% Mujeres", "54%", "55%", "55%", "56%", "58%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "62%", "89%", "78%", "89%", "120%"], ["Admisión especial PACE", "0%", "0%", "0%", "0%", "0%"], ["Ingreso Especial RAE", "67%", "33%", "57%", "70%", "140%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "90%", "90%", "90%", "92%", "94%"], ["3er año por cohorte", "81%", "77%", "85%", "-", "-"], ["Retención total", "68%", "77%", "85%", "82%", "94%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "59%", "55%", "72%", "66%"], ["Tasas de titulación en tiempo Efectivo", "0%", "12%", "26%", "48%"], ["Tasas de titulación en tiempo oportuno", "48%", "41%", "64%", "66%"], ["Tiempo en obtener titulación (semestres)", "11,6", "11,7", "10,9", "10,4"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "6", "23", "36", "32", "44"], ["Baja (entre 0<60%)", "0", "0", "0", "1", "3"], ["Media (entre 61 y <80%)", "0", "0", "6", "5", "13"], ["Alta (entre 80 <100%)", "6", "11", "14", "19", "12"], ["Eficiente =100%", "0", "12", "16", "7", "16"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "0%", "", "17%", ""], ["2022", "0%", "13%", "", "87%", ""], ["2023", "3%", "42%", "", "56%", ""], ["2024", "100%", "0%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["CIBA055-17", "1", "-", "34,4%", "-", "44,9%", "67,3%"], ["INGI093-20", "1", "-", "50,0%", "55,0%", "41,7%", "31,4%"], ["INGI114-20", "2", "-", "52,3%", "43,2%", "31,8%", "44,2%"], ["INGI131-20", "1", "-", "40,4%", "36,4%", "-", "40,5%"]]}, "criticalCount": 4}, {"career": "Arqueología", "group": "Escuelas de Ciencias Sociales", "file": "2026 REPORTERIA SACYP_ARQUEOLOGÍA_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_ARQUEOLOGÍA_PM.pdf", "sizeKB": 185.0, "modified": 1783010680.3699937, "modifiedLabel": "02-07-2026 12:44", "pages": 5, "metrics": {"matriculaNueva2026": "31", "matriculaTotal2026": "163", "mujeresTotal2026": "48%", "ocupacionRegular2026": "75%", "retencionPrimerAno2025": "88%", "retencionTotal2025": "88%", "titulacionTotal2021": "8%", "eficiente2025": "19", "alumnosRegulares2025": "22"}, "narrative": "Matrícula total 2026: 163. Ingreso nuevo 2026: 31. Ocupación regular 2026: 75%. Retención de 1er año cohorte 2025: 88%. El reporte identifica 2 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "27", "33", "43", "25", "31"], ["% Mujeres", "48%", "58%", "53%", "64%", "48%"], ["Matrícula admisión regular (prueba)", "23", "28", "36", "23", "30"], ["Matrícula admisión especial PACE", "0", "0", "0", "0", "0"], ["Matrícula Ingreso Especial RAE", "4", "5", "7", "2", "1"], ["Matrícula Total", "103", "122", "148", "151", "163"], ["% Mujeres", "45%", "48%", "53%", "55%", "55%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "70%", "85%", "109%", "58%", "75%"], ["Admisión especial PACE", "0%", "0%", "0%", "0%", "0%"], ["Ingreso Especial RAE", "200%", "250%", "100%", "29%", "14%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "86%", "63%", "76%", "91%", "88%"], ["3er año por cohorte", "65%", "52%", "67%", "-", "-"], ["Retención total", "54%", "52%", "64%", "86%", "88%"]], "graduation": [["Cohortes", "2019", "2020", "2021"], ["Tasa Titulación Total", "33%", "21%", "8%"], ["Tasas de titulación en tiempo Efectivo", "0%", "0%", "5%"], ["Tasas de titulación en tiempo oportuno", "22%", "14%", "-"], ["Tiempo en obtener titulación (semestres)", "12,6", "12,3", "10,3"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "17", "14", "21", "37", "22"], ["Baja (entre 0<60%)", "0", "0", "1", "1", "0"], ["Media (entre 61 y <80%)", "3", "1", "1", "6", "1"], ["Alta (entre 80 <100%)", "14", "5", "8", "16", "2"], ["Eficiente =100%", "0", "8", "11", "14", "19"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "6%", "", "29%", ""], ["2022", "0%", "7%", "", "93%", ""], ["2023", "10%", "5%", "", "86%", ""], ["2024", "97%", "3%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["CIBA131-19", "2", "-", "33,3%", "45,5%", "38,7%", "49,0%"], ["INGE065-19", "1", "-", "33,3%", "-", "48,0%", "30,4%"]]}, "criticalCount": 2}, {"career": "Derecho", "group": "Instituto de Ciencias Jurídicas", "file": "2026 REPORTERIA SACYP_DERECHO_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_DERECHO_PM.pdf", "sizeKB": 185.3, "modified": 1783007168.5262809, "modifiedLabel": "02-07-2026 11:46", "pages": 5, "metrics": {"matriculaNueva2026": "71", "matriculaTotal2026": "290", "mujeresTotal2026": "65%", "ocupacionRegular2026": "144%", "retencionPrimerAno2025": "76%", "retencionTotal2025": "76%", "titulacionTotal2021": "11%", "eficiente2025": "19", "alumnosRegulares2025": "47"}, "narrative": "Matrícula total 2026: 290. Ingreso nuevo 2026: 71. Ocupación regular 2026: 144%. Retención de 1er año cohorte 2025: 76%. El reporte identifica 3 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "56", "57", "50", "63", "71"], ["% Mujeres", "68%", "54%", "68%", "63%", "65%"], ["Matrícula admisión regular (prueba)", "53", "51", "46", "59", "65"], ["Matrícula admisión especial PACE", "1", "4", "1", "1", "4"], ["Matrícula Ingreso Especial RAE", "2", "2", "3", "3", "2"], ["Matrícula Total", "206", "233", "256", "266", "290"], ["% Mujeres", "64%", "61%", "63%", "65%", "66%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "118%", "113%", "102%", "131%", "144%"], ["Admisión especial PACE", "17%", "57%", "14%", "13%", "40%"], ["Ingreso Especial RAE", "67%", "67%", "100%", "300%", "200%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "75%", "86%", "86%", "78%", "76%"], ["3er año por cohorte", "53%", "66%", "77%", "-", "-"], ["Retención total", "45%", "57%", "77%", "68%", "76%"]], "graduation": [["Cohortes", "2018", "2019", "2020", "2021"], ["Tasa Titulación Total", "22%", "24%", "7%", "11%"], ["Tasas de titulación en tiempo Efectivo", "0%", "0%", "0%", "0%"], ["Tasas de titulación en tiempo oportuno", "9%", "7%", "7%", "-"], ["Tiempo en obtener titulación (semestres)", "13,1", "13,2", "11,0", "11,0"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "20", "30", "43", "34", "47"], ["Baja (entre 0<60%)", "4", "1", "5", "6", "7"], ["Media (entre 61 y <80%)", "8", "5", "17", "3", "10"], ["Alta (entre 80 <100%)", "8", "20", "21", "11", "11"], ["Eficiente =100%", "0", "4", "0", "14", "19"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "5%", "25%", "30%", "15%", "25%"], ["2022", "0%", "7%", "93%", "0%", "0%"], ["2023", "2%", "42%", "56%", "0%", "0%"], ["2024", "97%", "3%", "0%", "0%", "0%"], ["2025", "98%", "2%", "0%", "0%", "0%"]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["ICJU050-23", "1", "-", "-", "41,4%", "44,8%", "32,1%"], ["ICJU075-23", "2", "-", "-", "34,6%", "33,3%", "35,4%"], ["ICJU085-23", "2", "-", "-", "59,7%", "32,9%", "32,3%"]]}, "criticalCount": 3}, {"career": "Enfermería", "group": "Área de Ciencias de la Salud", "file": "2026 REPORTERIA SACYP_ENFERMERÍA_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_ENFERMERÍA_PM.pdf", "sizeKB": 184.8, "modified": 1783007189.1656046, "modifiedLabel": "02-07-2026 11:46", "pages": 5, "metrics": {"matriculaNueva2026": "63", "matriculaTotal2026": "297", "mujeresTotal2026": "84%", "ocupacionRegular2026": "118%", "retencionPrimerAno2025": "89%", "retencionTotal2025": "88%", "titulacionTotal2021": "-", "eficiente2025": "25", "alumnosRegulares2025": "56"}, "narrative": "Matrícula total 2026: 297. Ingreso nuevo 2026: 63. Ocupación regular 2026: 118%. Retención de 1er año cohorte 2025: 89%. El reporte identifica 1 asignatura crítica.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "65", "60", "68", "64", "63"], ["% Mujeres", "74%", "73%", "79%", "81%", "84%"], ["Matrícula admisión regular (prueba)", "59", "55", "58", "59", "59"], ["Matrícula admisión especial PACE", "1", "1", "3", "1", "1"], ["Matrícula Ingreso Especial RAE", "5", "4", "7", "4", "3"], ["Matrícula Total", "359", "370", "318", "303", "297"], ["% Mujeres", "80%", "79%", "80%", "81%", "80%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "118%", "110%", "116%", "118%", "118%"], ["Admisión especial PACE", "50%", "50%", "60%", "13%", "8%"], ["Ingreso Especial RAE", "167%", "133%", "233%", "67%", "50%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "100%", "88%", "82%", "82%", "89%"], ["3er año por cohorte", "85%", "75%", "75%", "-", "-"], ["Retención total", "77%", "68%", "75%", "76%", "88%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "72%", "75%", "65%", "54%"], ["Tasas de titulación en tiempo Efectivo", "0%", "0%", "0%", "0%"], ["Tasas de titulación en tiempo oportuno", "13%", "38%", "40%", "54%"], ["Tiempo en obtener titulación (semestres)", "13,7", "12,9", "12,1", "11,3"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "22", "43", "46", "50", "56"], ["Baja (entre 0<60%)", "1", "4", "3", "3", "9"], ["Media (entre 61 y <80%)", "4", "6", "26", "14", "11"], ["Alta (entre 80 <100%)", "17", "17", "3", "11", "11"], ["Eficiente =100%", "0", "16", "14", "22", "25"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "5%", "0%", "", "91%", ""], ["2022", "0%", "12%", "", "88%", ""], ["2023", "15%", "28%", "", "57%", ""], ["2024", "98%", "2%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["ETMP057-20", "1", "-", "45,0%", "48,1%", "30,3%", "37,0%"]]}, "criticalCount": 1}, {"career": "Fonoaudiología", "group": "Área de Ciencias de la Salud", "file": "2026 REPORTERIA SACYP_FONOAUDIOLOGÍA_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_FONOAUDIOLOGÍA_PM.pdf", "sizeKB": 185.2, "modified": 1783007942.6987143, "modifiedLabel": "02-07-2026 11:59", "pages": 5, "metrics": {"matriculaNueva2026": "21", "matriculaTotal2026": "109", "mujeresTotal2026": "100%", "ocupacionRegular2026": "26%", "retencionPrimerAno2025": "85%", "retencionTotal2025": "85%", "titulacionTotal2021": "-", "eficiente2025": "12", "alumnosRegulares2025": "16"}, "narrative": "Matrícula total 2026: 109. Ingreso nuevo 2026: 21. Ocupación regular 2026: 26%. Retención de 1er año cohorte 2025: 85%. El reporte identifica 1 asignatura crítica.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "17", "38", "21", "20", "21"], ["% Mujeres", "100%", "82%", "95%", "95%", "100%"], ["Matrícula admisión regular (prueba)", "12", "36", "18", "16", "13"], ["Matrícula admisión especial PACE", "2", "0", "0", "0", "1"], ["Matrícula Ingreso Especial RAE", "3", "2", "3", "4", "7"], ["Matrícula Total", "208", "194", "141", "117", "109"], ["% Mujeres", "90%", "89%", "89%", "91%", "92%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "20%", "60%", "30%", "32%", "26%"], ["Admisión especial PACE", "40%", "0%", "0%", "0%", "10%"], ["Ingreso Especial RAE", "75%", "50%", "38%", "40%", "70%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "86%", "88%", "76%", "95%", "85%"], ["3er año por cohorte", "86%", "65%", "68%", "-", "-"], ["Retención total", "81%", "59%", "68%", "81%", "85%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "67%", "65%", "60%", "57%"], ["Tasas de titulación en tiempo Efectivo", "9%", "12%", "9%", "30%"], ["Tasas de titulación en tiempo oportuno", "33%", "34%", "46%", "54%"], ["Tiempo en obtener titulación (semestres)", "12,1", "12,2", "11,4", "10,8"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "9", "10", "26", "17", "16"], ["Baja (entre 0<60%)", "0", "1", "4", "2", "3"], ["Media (entre 61 y <80%)", "3", "1", "1", "5", "0"], ["Alta (entre 80 <100%)", "6", "1", "11", "0", "1"], ["Eficiente =100%", "0", "7", "10", "10", "12"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "11%", "", "78%", ""], ["2022", "0%", "0%", "", "100%", ""], ["2023", "8%", "27%", "", "65%", ""], ["2024", "94%", "6%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["ETMP038-14", "1", "-", "37,5%", "40,0%", "32,1%", "37,0%"]]}, "criticalCount": 1}, {"career": "Ingeniería Ambiental", "group": "Instituto de Acuicultura e Ingeniería Ambiental", "file": "2026 REPORTERIA SACYP_INGENIERÍA AMBIENTAL_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_INGENIERÍA AMBIENTAL_PM.pdf", "sizeKB": 185.4, "modified": 1783018443.1082957, "modifiedLabel": "02-07-2026 14:54", "pages": 5, "metrics": {"matriculaNueva2026": "20", "matriculaTotal2026": "103", "mujeresTotal2026": "55%", "ocupacionRegular2026": "46%", "retencionPrimerAno2025": "80%", "retencionTotal2025": "80%", "titulacionTotal2021": "10%", "eficiente2025": "8", "alumnosRegulares2025": "16"}, "narrative": "Matrícula total 2026: 103. Ingreso nuevo 2026: 20. Ocupación regular 2026: 46%. Retención de 1er año cohorte 2025: 80%. El reporte identifica 4 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "17", "22", "22", "20", "20"], ["% Mujeres", "59%", "77%", "55%", "70%", "55%"], ["Matrícula admisión regular (prueba)", "16", "20", "15", "16", "16"], ["Matrícula admisión especial PACE", "0", "0", "0", "0", "0"], ["Matrícula Ingreso Especial RAE", "1", "2", "7", "4", "4"], ["Matrícula Total", "95", "108", "111", "111", "103"], ["% Mujeres", "47%", "54%", "58%", "64%", "62%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "46%", "57%", "43%", "46%", "46%"], ["Admisión especial PACE", "0%", "0%", "0%", "0%", "0%"], ["Ingreso Especial RAE", "50%", "100%", "100%", "40%", "40%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "75%", "82%", "86%", "91%", "80%"], ["3er año por cohorte", "55%", "76%", "73%", "-", "-"], ["Retención total", "45%", "71%", "73%", "77%", "80%"]], "graduation": [["Cohortes", "2019", "2020", "2021"], ["Tasa Titulación Total", "53%", "44%", "10%"], ["Tasas de titulación en tiempo Efectivo", "0%", "0%", "5%"], ["Tasas de titulación en tiempo oportuno", "31%", "31%", "-"], ["Tiempo en obtener titulación (semestres)", "12,4", "11,9", "10,5"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "7", "12", "16", "17", "16"], ["Baja (entre 0<60%)", "1", "4", "2", "1", "1"], ["Media (entre 61 y <80%)", "0", "3", "4", "4", "4"], ["Alta (entre 80 <100%)", "6", "3", "3", "5", "3"], ["Eficiente =100%", "0", "2", "7", "7", "8"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "14%", "0%", "", "0%", ""], ["2022", "0%", "33%", "", "67%", ""], ["2023", "0%", "44%", "", "56%", ""], ["2024", "82%", "18%", "", "0%", ""], ["2025", "94%", "6%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["CIBA061-19", "1", "-", "47,1%", "63,0%", "41,2%", "-"], ["CIBA066-20", "2", "-", "50,0%", "-", "36,8%", "44,4%"], ["CIBA077-19", "1", "44,7%", "69,7%", "48,0%", "31,8%", "44,4%"], ["CIBA080-19", "1", "-", "68,2%", "48,2%", "44,0%", "44,8%"]]}, "criticalCount": 4}, {"career": "Ingeniería Civil Industrial", "group": "Instituto de Gestión e Industria", "file": "2026 REPORTERIA SACYP_INGENIERÍA CIVIL INDUSTRIAL_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_INGENIERÍA CIVIL INDUSTRIAL_PM.pdf", "sizeKB": 179.1, "modified": 1783016633.6417525, "modifiedLabel": "02-07-2026 14:23", "pages": 5, "metrics": {"matriculaNueva2026": "115", "matriculaTotal2026": "494", "mujeresTotal2026": "30%", "ocupacionRegular2026": "119%", "retencionPrimerAno2025": "90%", "retencionTotal2025": "90%", "titulacionTotal2021": "-", "eficiente2025": "33", "alumnosRegulares2025": "97"}, "narrative": "Matrícula total 2026: 494. Ingreso nuevo 2026: 115. Ocupación regular 2026: 119%. Retención de 1er año cohorte 2025: 90%. El reporte identifica 8 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "81", "68", "84", "108", "115"], ["% Mujeres", "30%", "29%", "30%", "31%", "30%"], ["Matrícula admisión regular (prueba)", "79", "65", "72", "93", "95"], ["Matrícula admisión especial PACE", "0", "2", "1", "2", "6"], ["Matrícula Ingreso Especial RAE", "2", "1", "11", "13", "14"], ["Matrícula Total", "480", "466", "446", "473", "494"], ["% Mujeres", "29%", "29%", "30%", "30%", "31%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "113%", "93%", "103%", "116%", "119%"], ["Admisión especial PACE", "0%", "29%", "13%", "20%", "40%"], ["Ingreso Especial RAE", "50%", "25%", "138%", "130%", "140%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "93%", "85%", "81%", "89%", "90%"], ["3er año por cohorte", "74%", "65%", "66%", "-", "-"], ["Retención total", "67%", "62%", "66%", "76%", "90%"]], "graduation": [["Cohortes", "2016", "2017", "2018", "2019"], ["Tasa Titulación Total", "54%", "54%", "51%", "47%"], ["Tasas de titulación en tiempo Efectivo", "13%", "10%", "16%", "18%"], ["Tasas de titulación en tiempo oportuno", "33%", "39%", "35%", "45%"], ["Tiempo en obtener titulación (semestres)", "14,3", "14,0", "13,6", "12,9"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "46", "51", "46", "64", "97"], ["Baja (entre 0<60%)", "8", "0", "14", "12", "29"], ["Media (entre 61 y <80%)", "6", "10", "7", "19", "21"], ["Alta (entre 80 <100%)", "19", "35", "23", "18", "14"], ["Eficiente =100%", "13", "6", "2", "15", "33"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "20%", "", "9%", ""], ["2022", "0%", "10%", "", "75%", ""], ["2023", "11%", "41%", "", "46%", ""], ["2024", "88%", "13%", "", "0%", ""], ["2025", "98%", "1%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["CIBA091-14", "1", "-", "34,2%", "47,1%", "45,0%", "42,4%"], ["CIBA092-14", "1", "-", "40,8%", "65,6%", "65,0%", "51,9%"], ["CIBA166-14", "1", "-", "56,5%", "51,2%", "30,0%", "-"], ["CIBA168-14", "1", "-", "50,8%", "46,2%", "65,6%", "30,6%"], ["INGE044-14", "1", "-", "43,1%", "-", "50,8%", "51,5%"], ["INGI166-20", "2", "31,7%", "37,5%", "-", "-", "42,9%"], ["INGI297-20", "1", "-", "37,8%", "35,5%", "35,7%", "44,7%"], ["INGI297-20", "2", "51,4%", "56,8%", "46,7%", "47,4%", "30,4%"]]}, "criticalCount": 8}, {"career": "Ingeniería Comercial", "group": "Instituto de Gestión e Industria", "file": "2026 REPORTERIA SACYP_INGENIERÍA COMERCIAL_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_INGENIERÍA COMERCIAL_PM.pdf", "sizeKB": 185.4, "modified": 1783016640.8084564, "modifiedLabel": "02-07-2026 14:24", "pages": 5, "metrics": {"matriculaNueva2026": "90", "matriculaTotal2026": "338", "mujeresTotal2026": "51%", "ocupacionRegular2026": "112%", "retencionPrimerAno2025": "80%", "retencionTotal2025": "80%", "titulacionTotal2021": "-", "eficiente2025": "20", "alumnosRegulares2025": "73"}, "narrative": "Matrícula total 2026: 338. Ingreso nuevo 2026: 90. Ocupación regular 2026: 112%. Retención de 1er año cohorte 2025: 80%. El reporte identifica 2 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "74", "66", "78", "91", "90"], ["% Mujeres", "41%", "48%", "41%", "57%", "51%"], ["Matrícula admisión regular (prueba)", "70", "64", "69", "80", "84"], ["Matrícula admisión especial PACE", "0", "0", "0", "2", "1"], ["Matrícula Ingreso Especial RAE", "4", "2", "9", "9", "5"], ["Matrícula Total", "343", "330", "334", "354", "338"], ["% Mujeres", "48%", "49%", "45%", "46%", "47%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "117%", "107%", "115%", "107%", "112%"], ["Admisión especial PACE", "0%", "0%", "0%", "25%", "8%"], ["Ingreso Especial RAE", "100%", "50%", "180%", "90%", "50%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "90%", "86%", "83%", "88%", "80%"], ["3er año por cohorte", "70%", "73%", "64%", "-", "-"], ["Retención total", "61%", "66%", "64%", "72%", "80%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "66%", "49%", "53%", "47%"], ["Tasas de titulación en tiempo Efectivo", "17%", "0%", "0%", "1%"], ["Tasas de titulación en tiempo oportuno", "17%", "21%", "32%", "33%"], ["Tiempo en obtener titulación (semestres)", "13,3", "13,2", "12,4", "11,6"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "20", "48", "41", "56", "73"], ["Baja (entre 0<60%)", "1", "7", "5", "4", "1"], ["Media (entre 61 y <80%)", "7", "11", "11", "24", "21"], ["Alta (entre 80 <100%)", "11", "16", "14", "10", "31"], ["Eficiente =100%", "1", "14", "11", "18", "20"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "15%", "", "65%", ""], ["2022", "0%", "15%", "", "83%", ""], ["2023", "10%", "20%", "", "71%", ""], ["2024", "98%", "0%", "", "0%", ""], ["2025", "96%", "4%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["CIBA088-14", "1", "-", "30,9%", "48,1%", "35,4%", "52,7%"], ["INGI077-20", "2", "-", "55,2%", "43,0%", "33,3%", "47,5%"]]}, "criticalCount": 2}, {"career": "Ingeniería En Información Y Control De Gestión", "group": "Instituto de Gestión e Industria", "file": "2026 REPORTERIA SACYP_INGENIERÍA EN INFORMACIÓN Y CONTROL DE GESTIÓN_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_INGENIERÍA EN INFORMACIÓN Y CONTROL DE GESTIÓN_PM.pdf", "sizeKB": 182.3, "modified": 1783019980.0014791, "modifiedLabel": "02-07-2026 15:19", "pages": 5, "metrics": {"matriculaNueva2026": "56", "matriculaTotal2026": "217", "mujeresTotal2026": "46%", "ocupacionRegular2026": "100%", "retencionPrimerAno2025": "92%", "retencionTotal2025": "92%", "titulacionTotal2021": "-", "eficiente2025": "19", "alumnosRegulares2025": "43"}, "narrative": "Matrícula total 2026: 217. Ingreso nuevo 2026: 56. Ocupación regular 2026: 100%. Retención de 1er año cohorte 2025: 92%. El reporte identifica 15 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "24", "39", "41", "48", "56"], ["% Mujeres", "50%", "44%", "41%", "52%", "46%"], ["Matrícula admisión regular (prueba)", "22", "36", "40", "46", "45"], ["Matrícula admisión especial PACE", "1", "0", "0", "0", "0"], ["Matrícula Ingreso Especial RAE", "1", "3", "1", "2", "11"], ["Matrícula Total", "211", "213", "213", "214", "217"], ["% Mujeres", "39%", "40%", "42%", "49%", "49%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "49%", "80%", "89%", "102%", "100%"], ["Admisión especial PACE", "14%", "0%", "0%", "0%", "0%"], ["Ingreso Especial RAE", "33%", "100%", "14%", "20%", "110%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "88%", "92%", "82%", "88%", "92%"], ["3er año por cohorte", "82%", "58%", "59%", "-", "-"], ["Retención total", "53%", "54%", "59%", "71%", "92%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "47%", "42%", "28%", "28%"], ["Tasas de titulación en tiempo Efectivo", "0%", "0%", "0%", "0%"], ["Tasas de titulación en tiempo oportuno", "19%", "19%", "15%", "26%"], ["Tiempo en obtener titulación (semestres)", "13,9", "13,2", "12,5", "12,0"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "9", "13", "23", "29", "43"], ["Baja (entre 0<60%)", "0", "0", "4", "11", "2"], ["Media (entre 61 y <80%)", "1", "1", "6", "9", "11"], ["Alta (entre 80 <100%)", "8", "3", "12", "7", "11"], ["Eficiente =100%", "0", "9", "1", "2", "19"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "0%", "", "0%", ""], ["2022", "0%", "0%", "", "100%", ""], ["2023", "4%", "48%", "", "43%", ""], ["2024", "79%", "21%", "", "0%", ""], ["2025", "95%", "2%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["CIBA019-14", "1", "-", "-", "39,0%", "42,6%", "51,6%"], ["CIBA089-14", "2", "47,7%", "35,7%", "48,3%", "51,7%", "32,4%"], ["IICG189-14", "1", "57,9%", "45,7%", "-", "46,0%", "-"], ["INGE159-14", "1", "-", "31,3%", "-", "-", "-"], ["INGE159-20", "1", "-", "80,0%", "65,4%", "36,4%", "-"], ["INGI057-20", "2", "-", "-", "31,0%", "40,9%", "31,6%"], ["INGI085-20", "1", "-", "66,7%", "-", "-", "-"], ["INGI085-20", "2", "-", "52,4%", "42,3%", "-", "-"], ["INGI090-20", "1", "-", "45,0%", "-", "31,8%", "37,5%"], ["INGI108-20", "1", "-", "-", "40,5%", "54,6%", "53,1%"], ["INGI108-20", "2", "-", "61,5%", "-", "-", "-"], ["INGI110-20", "2", "60,0%", "56,0%", "34,6%", "-", "36,0%"], ["INGI234-20", "2", "50,0%", "60,0%", "30,0%", "30,0%", "44,4%"], ["INGI299-20", "1", "-", "66,7%", "-", "72,7%", "33,3%"], ["INGI299-20", "2", "33,3%", "32,0%", "45,5%", "45,5%", "-"]]}, "criticalCount": 15}, {"career": "Pedagogía En Educación Básica Con Menciones", "group": "Instituto de Especialidades Pedagógicas", "file": "2026 REPORTERIA SACYP_PED EN EDUCACIÓN BÁSICA CON MENCIONES_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_PED EN EDUCACIÓN BÁSICA CON MENCIONES_PM.pdf", "sizeKB": 186.2, "modified": 1783023256.6639433, "modifiedLabel": "02-07-2026 16:14", "pages": 5, "metrics": {"matriculaNueva2026": "36", "matriculaTotal2026": "164", "mujeresTotal2026": "78%", "ocupacionRegular2026": "91%", "retencionPrimerAno2025": "80%", "retencionTotal2025": "80%", "titulacionTotal2021": "-", "eficiente2025": "10", "alumnosRegulares2025": "33"}, "narrative": "Matrícula total 2026: 164. Ingreso nuevo 2026: 36. Ocupación regular 2026: 91%. Retención de 1er año cohorte 2025: 80%. El reporte identifica 3 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "26", "42", "53", "41", "36"], ["% Mujeres", "85%", "79%", "81%", "93%", "78%"], ["Matrícula admisión regular (prueba)", "23", "40", "44", "37", "32"], ["Matrícula admisión especial PACE", "0", "1", "0", "0", "0"], ["Matrícula Ingreso Especial RAE", "3", "1", "9", "4", "4"], ["Matrícula Total", "173", "164", "165", "163", "164"], ["% Mujeres", "84%", "82%", "83%", "82%", "83%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "66%", "114%", "126%", "106%", "91%"], ["Admisión especial PACE", "0%", "17%", "0%", "0%", "0%"], ["Ingreso Especial RAE", "150%", "50%", "150%", "40%", "40%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "57%", "85%", "88%", "91%", "80%"], ["3er año por cohorte", "30%", "73%", "76%", "-", "-"], ["Retención total", "30%", "73%", "76%", "77%", "80%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "75%", "70%", "70%", "60%"], ["Tasas de titulación en tiempo Efectivo", "41%", "24%", "19%", "53%"], ["Tasas de titulación en tiempo oportuno", "57%", "64%", "68%", "58%"], ["Tiempo en obtener titulación (semestres)", "11,6", "11,2", "11,0", "10,3"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "1", "19", "32", "41", "33"], ["Baja (entre 0<60%)", "0", "0", "0", "0", "3"], ["Media (entre 61 y <80%)", "0", "1", "1", "8", "8"], ["Alta (entre 80 <100%)", "1", "2", "16", "14", "12"], ["Eficiente =100%", "0", "16", "15", "19", "10"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "100%", "", "0%", ""], ["2022", "0%", "0%", "", "100%", ""], ["2023", "6%", "34%", "", "59%", ""], ["2024", "100%", "0%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["ASAL049-21", "2", "36,0%", "-", "-", "34,2%", "61,5%"], ["CIBA032-21", "1", "-", "-", "38,6%", "34,4%", "36,4%"], ["CIBA042-21", "2", "-", "-", "46,2%", "51,5%", "48,3%"]]}, "criticalCount": 3}, {"career": "Pedagogía En Educación Diferencial Con Mención", "group": "Instituto de Especialidades Pedagógicas", "file": "2026 REPORTERIA SACYP_PED EN EDUCACIÓN DIFERENCIAL  CON MENCIÓN_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_PED EN EDUCACIÓN DIFERENCIAL  CON MENCIÓN_PM.pdf", "sizeKB": 185.5, "modified": 1783023263.9373028, "modifiedLabel": "02-07-2026 16:14", "pages": 5, "metrics": {"matriculaNueva2026": "24", "matriculaTotal2026": "124", "mujeresTotal2026": "96%", "ocupacionRegular2026": "55%", "retencionPrimerAno2025": "100%", "retencionTotal2025": "100%", "titulacionTotal2021": "-", "eficiente2025": "10", "alumnosRegulares2025": "28"}, "narrative": "Matrícula total 2026: 124. Ingreso nuevo 2026: 24. Ocupación regular 2026: 55%. Retención de 1er año cohorte 2025: 100%. El reporte no registra asignaturas críticas en la tabla correspondiente.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "20", "37", "25", "28", "24"], ["% Mujeres", "100%", "86%", "96%", "96%", "96%"], ["Matrícula admisión regular (prueba)", "18", "36", "23", "24", "22"], ["Matrícula admisión especial PACE", "2", "0", "1", "2", "0"], ["Matrícula Ingreso Especial RAE", "0", "1", "1", "2", "2"], ["Matrícula Total", "194", "178", "143", "138", "124"], ["% Mujeres", "95%", "94%", "95%", "94%", "94%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "45%", "90%", "58%", "60%", "55%"], ["Admisión especial PACE", "33%", "0%", "10%", "13%", "0%"], ["Ingreso Especial RAE", "0%", "50%", "17%", "20%", "20%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "100%", "90%", "95%", "92%", "100%"], ["3er año por cohorte", "84%", "80%", "89%", "-", "-"], ["Retención total", "84%", "75%", "89%", "88%", "100%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "90%", "87%", "90%", "72%"], ["Tasas de titulación en tiempo Efectivo", "63%", "64%", "84%", "55%"], ["Tasas de titulación en tiempo oportuno", "88%", "84%", "90%", "72%"], ["Tiempo en obtener titulación (semestres)", "10,6", "10,6", "10,1", "10,5"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "1", "15", "33", "22", "28"], ["Baja (entre 0<60%)", "0", "0", "0", "1", "0"], ["Media (entre 61 y <80%)", "0", "1", "1", "2", "1"], ["Alta (entre 80 <100%)", "1", "1", "5", "8", "17"], ["Eficiente =100%", "0", "13", "27", "11", "10"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "0%", "", "100%", ""], ["2022", "0%", "13%", "", "87%", ""], ["2023", "3%", "12%", "", "85%", ""], ["2024", "100%", "0%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"]]}, "criticalCount": 0}, {"career": "Pedagogía En Educación Parvularia", "group": "Instituto de Especialidades Pedagógicas", "file": "2026 REPORTERIA SACYP_PED EN EDUCACIÓN PARVULARIA _PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_PED EN EDUCACIÓN PARVULARIA _PM.pdf", "sizeKB": 184.5, "modified": 1783023271.806728, "modifiedLabel": "02-07-2026 16:14", "pages": 5, "metrics": {"matriculaNueva2026": "32", "matriculaTotal2026": "161", "mujeresTotal2026": "97%", "ocupacionRegular2026": "87%", "retencionPrimerAno2025": "90%", "retencionTotal2025": "90%", "titulacionTotal2021": "61%", "eficiente2025": "28", "alumnosRegulares2025": "36"}, "narrative": "Matrícula total 2026: 161. Ingreso nuevo 2026: 32. Ocupación regular 2026: 87%. Retención de 1er año cohorte 2025: 90%. El reporte no registra asignaturas críticas en la tabla correspondiente.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "25", "32", "42", "40", "32"], ["% Mujeres", "96%", "97%", "100%", "100%", "97%"], ["Matrícula admisión regular (prueba)", "22", "28", "32", "29", "26"], ["Matrícula admisión especial PACE", "0", "2", "3", "5", "1"], ["Matrícula Ingreso Especial RAE", "3", "2", "7", "6", "5"], ["Matrícula Total", "84", "107", "144", "157", "161"], ["% Mujeres", "99%", "98%", "99%", "99%", "99%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "73%", "93%", "107%", "97%", "87%"], ["Admisión especial PACE", "0%", "33%", "30%", "33%", "7%"], ["Ingreso Especial RAE", "150%", "100%", "100%", "120%", "100%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "88%", "88%", "100%", "93%", "90%"], ["3er año por cohorte", "79%", "72%", "97%", "-", "-"], ["Retención total", "76%", "72%", "97%", "90%", "90%"]], "graduation": [["Cohortes", "2020", "2021"], ["Tasa Titulación Total", "76%", "61%"], ["Tasas de titulación en tiempo Efectivo", "68%", "61%"], ["Tasas de titulación en tiempo oportuno", "76%", "-"], ["Tiempo en obtener titulación (semestres)", "10,2", "10,0"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "5", "18", "31", "38", "36"], ["Baja (entre 0<60%)", "0", "0", "0", "0", "1"], ["Media (entre 61 y <80%)", "0", "0", "0", "0", "1"], ["Alta (entre 80 <100%)", "3", "2", "3", "8", "6"], ["Eficiente =100%", "2", "16", "28", "30", "28"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "0%", "", "40%", ""], ["2022", "0%", "0%", "", "100%", ""], ["2023", "0%", "6%", "", "94%", ""], ["2024", "100%", "0%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"]]}, "criticalCount": 0}, {"career": "Pedagogía En Matemáticas", "group": "Instituto de Especialidades Pedagógicas", "file": "2026 REPORTERIA SACYP_PED EN MATEMÁTICAS_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_PED EN MATEMÁTICAS_PM.pdf", "sizeKB": 185.2, "modified": 1783023284.0867972, "modifiedLabel": "02-07-2026 16:14", "pages": 5, "metrics": {"matriculaNueva2026": "14", "matriculaTotal2026": "82", "mujeresTotal2026": "64%", "ocupacionRegular2026": "56%", "retencionPrimerAno2025": "75%", "retencionTotal2025": "75%", "titulacionTotal2021": "-", "eficiente2025": "4", "alumnosRegulares2025": "12"}, "narrative": "Matrícula total 2026: 82. Ingreso nuevo 2026: 14. Ocupación regular 2026: 56%. Retención de 1er año cohorte 2025: 75%. El reporte identifica 1 asignatura crítica.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "24", "21", "17", "16", "14"], ["% Mujeres", "54%", "52%", "76%", "44%", "64%"], ["Matrícula admisión regular (prueba)", "20", "19", "12", "13", "14"], ["Matrícula admisión especial PACE", "0", "0", "0", "0", "0"], ["Matrícula Ingreso Especial RAE", "4", "2", "5", "3", "0"], ["Matrícula Total", "128", "112", "106", "97", "82"], ["% Mujeres", "47%", "44%", "51%", "52%", "56%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "80%", "76%", "48%", "52%", "56%"], ["Admisión especial PACE", "0%", "0%", "0%", "0%", "0%"], ["Ingreso Especial RAE", "200%", "100%", "83%", "30%", "0%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "96%", "71%", "86%", "88%", "75%"], ["3er año por cohorte", "65%", "67%", "76%", "-", "-"], ["Retención total", "61%", "67%", "76%", "82%", "75%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "63%", "60%", "53%", "35%"], ["Tasas de titulación en tiempo Efectivo", "22%", "49%", "28%", "19%"], ["Tasas de titulación en tiempo oportuno", "41%", "54%", "44%", "35%"], ["Tiempo en obtener titulación (semestres)", "11,9", "10,1", "11,3", "10,8"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "5", "15", "16", "14", "12"], ["Baja (entre 0<60%)", "0", "0", "0", "0", "1"], ["Media (entre 61 y <80%)", "0", "3", "1", "1", "0"], ["Alta (entre 80 <100%)", "5", "4", "4", "4", "7"], ["Eficiente =100%", "0", "8", "11", "9", "4"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "0%", "", "40%", ""], ["2022", "0%", "27%", "", "73%", ""], ["2023", "0%", "6%", "", "94%", ""], ["2024", "86%", "14%", "", "0%", ""], ["2025", "92%", "8%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["CIBA018-20", "2", "30,4%", "44,0%", "30,8%", "-", "35,7%"]]}, "criticalCount": 1}, {"career": "Psicología", "group": "Instituto de Psicología", "file": "2026 REPORTERIA SACYP_PSICOLOGÍA_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_PSICOLOGÍA_PM.pdf", "sizeKB": 185.2, "modified": 1783023294.0369675, "modifiedLabel": "02-07-2026 16:14", "pages": 5, "metrics": {"matriculaNueva2026": "82", "matriculaTotal2026": "387", "mujeresTotal2026": "62%", "ocupacionRegular2026": "103%", "retencionPrimerAno2025": "90%", "retencionTotal2025": "90%", "titulacionTotal2021": "-", "eficiente2025": "37", "alumnosRegulares2025": "83"}, "narrative": "Matrícula total 2026: 387. Ingreso nuevo 2026: 82. Ocupación regular 2026: 103%. Retención de 1er año cohorte 2025: 90%. El reporte no registra asignaturas críticas en la tabla correspondiente.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "80", "82", "83", "92", "82"], ["% Mujeres", "73%", "70%", "64%", "73%", "62%"], ["Matrícula admisión regular (prueba)", "74", "73", "73", "81", "72"], ["Matrícula admisión especial PACE", "2", "6", "3", "1", "0"], ["Matrícula Ingreso Especial RAE", "4", "3", "7", "10", "10"], ["Matrícula Total", "353", "367", "359", "382", "387"], ["% Mujeres", "72%", "72%", "70%", "69%", "68%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "114%", "112%", "112%", "116%", "103%"], ["Admisión especial PACE", "33%", "100%", "33%", "11%", "0%"], ["Ingreso Especial RAE", "100%", "75%", "175%", "200%", "200%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "87%", "78%", "93%", "92%", "90%"], ["3er año por cohorte", "83%", "73%", "90%", "-", "-"], ["Retención total", "80%", "68%", "89%", "87%", "90%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "81%", "52%", "69%", "49%"], ["Tasas de titulación en tiempo Efectivo", "17%", "6%", "31%", "36%"], ["Tasas de titulación en tiempo oportuno", "57%", "31%", "66%", "47%"], ["Tiempo en obtener titulación (semestres)", "12,0", "12,1", "10,7", "10,4"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "13", "53", "73", "72", "83"], ["Baja (entre 0<60%)", "1", "0", "1", "2", "5"], ["Media (entre 61 y <80%)", "1", "1", "1", "7", "18"], ["Alta (entre 80 <100%)", "10", "11", "17", "21", "23"], ["Eficiente =100%", "1", "41", "54", "42", "37"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "8%", "8%", "", "77%", ""], ["2022", "0%", "2%", "", "98%", ""], ["2023", "3%", "8%", "", "89%", ""], ["2024", "96%", "4%", "", "0%", ""], ["2025", "99%", "1%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"]]}, "criticalCount": 0}, {"career": "Tecnología Médica", "group": "Área de Ciencias de la Salud", "file": "2026 REPORTERIA SACYP_TECNOLOGÍA MÉDICA_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_TECNOLOGÍA MÉDICA_PM.pdf", "sizeKB": 187.2, "modified": 1783023610.8905246, "modifiedLabel": "02-07-2026 16:20", "pages": 5, "metrics": {"matriculaNueva2026": "61", "matriculaTotal2026": "276", "mujeresTotal2026": "70%", "ocupacionRegular2026": "83%", "retencionPrimerAno2025": "86%", "retencionTotal2025": "86%", "titulacionTotal2021": "-", "eficiente2025": "16", "alumnosRegulares2025": "57"}, "narrative": "Matrícula total 2026: 276. Ingreso nuevo 2026: 61. Ocupación regular 2026: 83%. Retención de 1er año cohorte 2025: 86%. El reporte identifica 6 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "57", "65", "67", "70", "61"], ["% Mujeres", "67%", "60%", "61%", "64%", "70%"], ["Matrícula admisión regular (prueba)", "53", "59", "66", "66", "54"], ["Matrícula admisión especial PACE", "0", "1", "0", "0", "0"], ["Matrícula Ingreso Especial RAE", "4", "5", "1", "4", "7"], ["Matrícula Total", "371", "317", "312", "291", "276"], ["% Mujeres", "67%", "66%", "66%", "64%", "64%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "88%", "98%", "110%", "102%", "83%"], ["Admisión especial PACE", "0%", "25%", "0%", "0%", "0%"], ["Ingreso Especial RAE", "100%", "125%", "25%", "133%", "233%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "79%", "79%", "85%", "73%", "86%"], ["3er año por cohorte", "57%", "60%", "65%", "-", "-"], ["Retención total", "51%", "51%", "65%", "60%", "86%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "61%", "61%", "44%", "49%"], ["Tasas de titulación en tiempo Efectivo", "0%", "0%", "15%", "36%"], ["Tasas de titulación en tiempo oportuno", "18%", "38%", "30%", "49%"], ["Tiempo en obtener titulación (semestres)", "13,3", "12,9", "11,9", "10,6"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "23", "29", "42", "41", "57"], ["Baja (entre 0<60%)", "2", "5", "2", "8", "25"], ["Media (entre 61 y <80%)", "11", "7", "17", "15", "7"], ["Alta (entre 80 <100%)", "10", "6", "12", "10", "9"], ["Eficiente =100%", "0", "11", "11", "8", "16"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "9%", "0%", "", "91%", ""], ["2022", "7%", "0%", "", "93%", ""], ["2023", "67%", "0%", "", "33%", ""], ["2024", "100%", "0%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["CIBA070-16", "1", "-", "48,3%", "38,3%", "34,5%", "60,2%"], ["CIBA078-16", "1", "-", "-", "41,8%", "66,3%", "52,0%"], ["CIBA105-16", "2", "-", "51,1%", "57,1%", "38,9%", "47,0%"], ["ETMP098-16", "2", "-", "45,5%", "-", "36,4%", "32,0%"], ["ETMP100-16", "2", "-", "34,6%", "35,7%", "32,4%", "39,5%"], ["ETMP158-16", "2", "-", "36,7%", "-", "33,3%", "32,1%"]]}, "criticalCount": 6}, {"career": "Terapia Ocupacional", "group": "Área de Ciencias de la Salud", "file": "2026 REPORTERIA SACYP_TERAPIA OCUPACIONAL_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_TERAPIA OCUPACIONAL_PM.pdf", "sizeKB": 185.2, "modified": 1783025818.6446762, "modifiedLabel": "02-07-2026 16:56", "pages": 5, "metrics": {"matriculaNueva2026": "56", "matriculaTotal2026": "202", "mujeresTotal2026": "89%", "ocupacionRegular2026": "89%", "retencionPrimerAno2025": "85%", "retencionTotal2025": "85%", "titulacionTotal2021": "-", "eficiente2025": "16", "alumnosRegulares2025": "39"}, "narrative": "Matrícula total 2026: 202. Ingreso nuevo 2026: 56. Ocupación regular 2026: 89%. Retención de 1er año cohorte 2025: 85%. El reporte identifica 2 asignaturas críticas.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "24", "45", "47", "46", "56"], ["% Mujeres", "96%", "80%", "77%", "85%", "89%"], ["Matrícula admisión regular (prueba)", "19", "43", "36", "36", "40"], ["Matrícula admisión especial PACE", "1", "0", "0", "0", "2"], ["Matrícula Ingreso Especial RAE", "4", "2", "11", "10", "14"], ["Matrícula Total", "216", "201", "193", "192", "202"], ["% Mujeres", "88%", "85%", "82%", "80%", "84%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "42%", "96%", "80%", "80%", "89%"], ["Admisión especial PACE", "33%", "0%", "0%", "0%", "17%"], ["Ingreso Especial RAE", "133%", "67%", "275%", "67%", "93%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "90%", "79%", "89%", "85%", "85%"], ["3er año por cohorte", "85%", "71%", "71%", "-", "-"], ["Retención total", "77%", "71%", "71%", "68%", "85%"]], "graduation": [["Cohortes", "2017", "2018", "2019", "2020"], ["Tasa Titulación Total", "73%", "78%", "62%", "60%"], ["Tasas de titulación en tiempo Efectivo", "18%", "0%", "0%", "40%"], ["Tasas de titulación en tiempo oportuno", "18%", "57%", "60%", "60%"], ["Tiempo en obtener titulación (semestres)", "12,8", "11,8", "11,3", "10,6"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "16", "16", "32", "32", "39"], ["Baja (entre 0<60%)", "0", "0", "0", "2", "3"], ["Media (entre 61 y <80%)", "3", "4", "7", "6", "4"], ["Alta (entre 80 <100%)", "13", "5", "16", "17", "16"], ["Eficiente =100%", "0", "7", "9", "7", "16"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "6%", "", "56%", ""], ["2022", "0%", "25%", "", "75%", ""], ["2023", "3%", "31%", "", "66%", ""], ["2024", "100%", "0%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"], ["ETMP073-19", "2", "-", "-", "47,6%", "48,2%", "44,1%"], ["ETMP085-19", "1", "-", "42,4%", "31,0%", "-", "53,7%"]]}, "criticalCount": 2}, {"career": "Trabajo Social", "group": "Escuelas de Ciencias Sociales", "file": "2026 REPORTERIA SACYP_TRABAJO SOCIAL_PM.pdf", "href": "pdfs_reporteria_sacyp_2026/2026 REPORTERIA SACYP_TRABAJO SOCIAL_PM.pdf", "sizeKB": 184.1, "modified": 1783025830.088202, "modifiedLabel": "02-07-2026 16:57", "pages": 5, "metrics": {"matriculaNueva2026": "30", "matriculaTotal2026": "126", "mujeresTotal2026": "80%", "ocupacionRegular2026": "60%", "retencionPrimerAno2025": "71%", "retencionTotal2025": "71%", "titulacionTotal2021": "47%", "eficiente2025": "13", "alumnosRegulares2025": "17"}, "narrative": "Matrícula total 2026: 126. Ingreso nuevo 2026: 30. Ocupación regular 2026: 60%. Retención de 1er año cohorte 2025: 71%. El reporte no registra asignaturas críticas en la tabla correspondiente.", "tables": {"academic": [["Cohortes", "2022", "2023", "2024", "2025", "2026"], ["Matrícula nueva según cohorte", "23", "38", "29", "24", "30"], ["% Mujeres", "87%", "76%", "66%", "83%", "80%"], ["Matrícula admisión regular (prueba)", "21", "36", "22", "21", "24"], ["Matrícula admisión especial PACE", "1", "0", "0", "0", "0"], ["Matrícula Ingreso Especial RAE", "1", "2", "7", "3", "6"], ["Matrícula Total", "95", "122", "136", "129", "126"], ["% Mujeres", "78%", "78%", "76%", "76%", "78%"]], "occupancy": [["Cohortes /Tasa de ocupación por vacante", "2022", "2023", "2024", "2025", "2026"], ["Admisión regular", "53%", "90%", "55%", "53%", "60%"], ["Admisión especial PACE", "14%", "0%", "0%", "0%", "0%"], ["Ingreso Especial RAE", "50%", "100%", "100%", "30%", "60%"]], "retention": [["Cohortes/Tasas de retención", "2021", "2022", "2023", "2024", "2025"], ["1er año por cohorte", "89%", "91%", "84%", "83%", "71%"], ["3er año por cohorte", "63%", "78%", "79%", "-", "-"], ["Retención total", "63%", "78%", "79%", "72%", "71%"]], "graduation": [["Cohortes", "2020", "2021"], ["Tasa Titulación Total", "55%", "47%"], ["Tasas de titulación en tiempo Efectivo", "0%", "42%"], ["Tasas de titulación en tiempo oportuno", "53%", "-"], ["Tiempo en obtener titulación (semestres)", "11,2", "10,1"]], "efficiency": [["Cohortes/ Tasa de Eficiencia1", "2021", "2022", "2023", "2024", "2025"], ["Nº Alumnos regulares", "6", "18", "30", "21", "17"], ["Baja (entre 0<60%)", "0", "0", "0", "1", "0"], ["Media (entre 61 y <80%)", "0", "0", "1", "5", "0"], ["Alta (entre 80 <100%)", "5", "4", "15", "6", "4"], ["Eficiente =100%", "1", "14", "14", "9", "13"]], "progressState": [["Cohorte", "1er a 4to semestre", "5to a 8vo con pendientes 1er-4to", "5to a 8vo semestre", "9no a 10mo con pendientes previas", "9no a 10mo semestre"], ["2021", "0%", "0%", "", "33%", ""], ["2022", "0%", "11%", "", "89%", ""], ["2023", "0%", "23%", "", "77%", ""], ["2024", "95%", "5%", "", "0%", ""], ["2025", "100%", "0%", "", "0%", ""]], "critical": [["Código", "Semestre", "2021", "2022", "2023", "2024", "2025"]]}, "criticalCount": 0}], "glossary": ["Matrícula nueva según cohorte: Corresponde a los registros de estudiantes nuevos que ingresan a la carrera, independiente de su vía de admisión.", "% Mujeres: Cuando se indique “Mujer (%)”, corresponde al porcentaje de mujeres matriculadas, según atributo. Por ejemplo, si es “Mujer (%) por modalidad”, corresponderá al porcentaje de mujeres sobre el total de matriculados en cada modalidad, según sexo.", "Matrícula admisión regular (prueba): corresponde a los matriculados según admisión regular, según cohorte de ingreso.", "Matrícula admisión especial PACE: corresponde a los matriculados según admisión PACE, según cohorte de ingreso.", "Matrícula directo: corresponde a los matriculados de acceso directo, correspondiente a carreras técnicas, según cohorte de ingreso.", "Matrícula Total: corresponde a todas y todos los estudiantes matriculados según año.", "Ratio Ocupación: corresponde a la tasa de ocupación de vacantes de matriculados sobre las vacantes ofertadas, según tipo de admisión: regular, especial y PACE.", "Tasas de Retención: Corresponde al porcentaje de estudiantes que se mantienen en la carrera según el tiempo consultado. Retención de 1er año: estudiantes de primer año a la carrera en un año determinado y el número de esos mismos estudiantes que se mantienen en la carrera al año siguiente. Retención de 3° año: estudiantes que ingresan como alumnos de primer año a la carrera en un año determinado y el número de esos mismos estudiantes que se mantienen en la carrera al cuarto año. Tasa de retención total: estudiantes que ingresan al primer año de la carrera en un año determinado y la suma de estudiantes actualmente matriculados, egresados sin titularse y titulados de dicha cohorte.", "Tasa de titulación total: Cociente entre el N° de estudiantes titulados a la fecha y el N° de estudiantes de la cohorte original, de una carrera.", "Tasas de titulación en tiempo Efectivo: Corresponde al porcentaje de titulados por cohorte de ingreso, en el tiempo teórico de duración de la carrera.", "Tasas de titulación en tiempo oportuno: Corresponde al porcentaje de titulados por cohorte de ingreso, luego de un año de transcurrida la duración teórica de la carrera o programa.", "Tiempo en obtener titulación (semestres): Corresponde al promedio del total de semestres transcurridos desde el ingreso del estudiante a primer año de una carrera hasta la obtención efectiva de su título profesional o grado académico.", "Tasa de Eficiencia: corresponde al porcentaje de avance de las y los estudiantes con situación de Alumno Regular de una cohorte, matriculados en el año actual, en función de su plan de estudio a la fecha consultada. A partir del resultado individual se caracteriza la cohorte en tres tipologías: Baja corresponde al número de estudiantes que tienen un estado de avance entre 0<60%; Media corresponde al número de estudiantes que tienen un estado de avance entre 60 y <80%; Alta corresponde al número de estudiantes que tienen un estado de avance entre 80 <100%; Eficiente corresponde al número de estudiantes que tienen un estado de avance mayor o igual a 100%", "Asignaturas críticas: corresponde aquellas asignaturas que presentan una reprobación mayor o igual a 30% que se visualizan de manera sostenida con una tendencia de al menos en 3 de los 5 años que se presentan, como consecuencia sus resultados afectan a la permanencia de la carrera, titulación y tiempos de titulación oportuna, en la observación de 5 años."]};
+    const documents = payload.documents;
+    const groups = payload.groups;
+    let activeGroup = "Todas";
+    let activeSearch = "";
+    let activeSort = "career";
+    let activeView = "organization";
+    const collator = new Intl.Collator("es", { sensitivity: "base" });
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function normalize(value) {
+      return String(value ?? "")
+        .toLocaleLowerCase("es")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function numberFrom(value) {
+      const match = String(value ?? "").match(/-?\d+(?:,\d+|\.\d+)?/);
+      return match ? Number(match[0].replace(",", ".")) : -1;
+    }
+
+    function styleFor(group) {
+      const item = groups[group] || { color: "#8d1738", soft: "rgba(141, 23, 56, 0.08)" };
+      return `--accent:${item.color};--soft:${item.soft};`;
+    }
+
+    function metric(label, value) {
+      return `<span class="metric-chip"><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value || "-")}</span>`;
+    }
+
+    function tableMarkup(table, emptyText) {
+      if (!table || table.length <= 1) return `<p class="empty-table">${escapeHtml(emptyText)}</p>`;
+      const [head, ...rows] = table;
+      return `
+        <div class="table-wrap">
+          <table>
+            <thead><tr>${head.map(cell => `<th>${escapeHtml(cell)}</th>`).join("")}</tr></thead>
+            <tbody>
+              ${rows.map(row => `<tr>${head.map((_, index) => `<td>${escapeHtml(row[index] || "")}</td>`).join("")}</tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function docSearchText(doc) {
+      return normalize([
+        doc.career,
+        doc.group,
+        doc.file,
+        doc.narrative,
+        ...Object.values(doc.metrics),
+        ...Object.values(doc.tables).flat(2)
+      ].join(" "));
+    }
+
+    function visibleDocs() {
+      const needle = normalize(activeSearch.trim());
+      return documents
+        .filter(doc => activeGroup === "Todas" || doc.group === activeGroup)
+        .filter(doc => !needle || docSearchText(doc).includes(needle))
+        .sort((a, b) => {
+          if (activeSort === "group") return collator.compare(a.group, b.group) || collator.compare(a.career, b.career);
+          if (activeSort === "critical") return b.criticalCount - a.criticalCount || collator.compare(a.career, b.career);
+          if (activeSort === "matricula") return numberFrom(b.metrics.matriculaTotal2026) - numberFrom(a.metrics.matriculaTotal2026) || collator.compare(a.career, b.career);
+          return collator.compare(a.career, b.career);
+        });
+    }
+
+    function renderFilters() {
+      const names = ["Todas", ...Object.keys(groups)];
+      document.getElementById("groupFilters").innerHTML = names.map(name => {
+        const count = name === "Todas" ? documents.length : documents.filter(doc => doc.group === name).length;
+        return `<button type="button" data-group="${escapeHtml(name)}" aria-pressed="${String(activeGroup === name)}">${escapeHtml(name)} (${count})</button>`;
+      }).join("");
+    }
+
+    function renderDimensionSwitch() {
+      document.querySelectorAll("#dimensionSwitch [data-view]").forEach(button => {
+        button.setAttribute("aria-pressed", String(button.dataset.view === activeView));
+      });
+    }
+
+    function reportCard(doc) {
+      return `
+        <details class="report-card" style="${styleFor(doc.group)}">
+          <summary class="report-summary">
+            <div class="summary-main">
+              <div class="career-line">
+                <h3>${escapeHtml(doc.career)}</h3>
+                <span class="pill">${escapeHtml(doc.group)}</span>
+              </div>
+              <div class="metric-strip">
+                ${metric("Matrícula total 2026", doc.metrics.matriculaTotal2026)}
+                ${metric("Retención 2025", doc.metrics.retencionPrimerAno2025)}
+                ${metric("Asignaturas críticas", doc.criticalCount)}
+              </div>
+            </div>
+            <div class="summary-actions">
+              <a class="btn" href="${doc.href}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Abrir PDF</a>
+              <a class="btn primary" href="${doc.href}" download onclick="event.stopPropagation()">Descargar PDF</a>
+              <span class="expand-indicator" aria-hidden="true">+</span>
+            </div>
+          </summary>
+          <div class="report-body">
+            <div class="body-grid">
+              <aside class="interpretation">
+                <h3>Lectura rápida</h3>
+                <p>${escapeHtml(doc.narrative)}</p>
+                <div class="download-row">
+                  <a class="btn" href="${doc.href}" target="_blank" rel="noopener">Abrir PDF</a>
+                  <a class="btn primary" href="${doc.href}" download>Descargar PDF</a>
+                </div>
+                <p style="margin-top: 12px; font-size: 0.86rem;">Archivo: ${escapeHtml(doc.file)}<br>Páginas: ${doc.pages} | Modificado: ${escapeHtml(doc.modifiedLabel)}</p>
+              </aside>
+              <div class="accordion-stack">
+                <details class="data-accordion">
+                  <summary>Progresión académica: matrícula y composición</summary>
+                  ${tableMarkup(doc.tables.academic, "Sin tabla extraíble de matrícula.")}
+                </details>
+                <details class="data-accordion">
+                  <summary>Ocupación por vacante</summary>
+                  ${tableMarkup(doc.tables.occupancy, "Sin tabla extraíble de ocupación.")}
+                </details>
+                <details class="data-accordion">
+                  <summary>Retención</summary>
+                  ${tableMarkup(doc.tables.retention, "Sin tabla extraíble de retención.")}
+                </details>
+                <details class="data-accordion">
+                  <summary>Titulación</summary>
+                  ${tableMarkup(doc.tables.graduation, "Sin tabla extraíble de titulación.")}
+                </details>
+                <details class="data-accordion">
+                  <summary>Progresión curricular: eficiencia</summary>
+                  ${tableMarkup(doc.tables.efficiency, "Sin tabla extraíble de eficiencia curricular.")}
+                </details>
+                <details class="data-accordion">
+                  <summary>Estado de avance por semestre</summary>
+                  ${tableMarkup(doc.tables.progressState, "Sin tabla extraíble de estado de avance.")}
+                </details>
+                <details class="data-accordion">
+                  <summary>Asignaturas críticas</summary>
+                  ${tableMarkup(doc.tables.critical, "El reporte no registra asignaturas críticas en la tabla correspondiente.")}
+                </details>
+              </div>
+            </div>
+          </div>
+        </details>
+      `;
+    }
+
+    function renderReports() {
+      const docs = visibleDocs();
+      document.getElementById("resultStatus").textContent = `${docs.length} reporte${docs.length === 1 ? "" : "s"} visible${docs.length === 1 ? "" : "s"} | ${activeView === "organization" ? "Dimensión organización" : "Dimensión carrera/programa"}`;
+      if (activeView === "organization") {
+        document.getElementById("reportList").innerHTML = Object.entries(groups).map(([name, group]) => {
+          const groupDocs = docs.filter(doc => doc.group === name);
+          if (!groupDocs.length) return "";
+          return `
+            <article class="organization-block" style="${styleFor(name)}" aria-label="${escapeHtml(name)}">
+              <div class="organization-head">
+                <h3>${escapeHtml(name)} <span class="pill">${groupDocs.length} reporte${groupDocs.length === 1 ? "" : "s"}</span></h3>
+                <p>${escapeHtml(group.summary)}</p>
+              </div>
+              ${groupDocs.map(reportCard).join("")}
+            </article>
+          `;
+        }).join("");
+      } else {
+        document.getElementById("reportList").innerHTML = docs.map(reportCard).join("");
+      }
+      renderFilters();
+      renderDimensionSwitch();
+    }
+
+    function renderOverview() {
+      const container = document.getElementById("overviewGrid");
+      container.innerHTML = Object.entries(groups).map(([name, group]) => {
+        const count = documents.filter(doc => doc.group === name).length;
+        const pct = Math.round((count / documents.length) * 100);
+        return `
+          <article class="group-card" style="${styleFor(name)}">
+            <strong>${count}</strong>
+            <span>${escapeHtml(name)}</span>
+            <p>${escapeHtml(group.summary)}</p>
+            <div class="mini-bar" aria-hidden="true"><i style="width:${pct}%"></i></div>
+          </article>
+        `;
+      }).join("");
+
+      document.getElementById("groupExpander").innerHTML = Object.entries(groups).map(([name, group]) => {
+        const docs = documents.filter(doc => doc.group === name).sort((a, b) => collator.compare(a.career, b.career));
+        return `
+          <details style="${styleFor(name)}">
+            <summary>${escapeHtml(name)} | ${docs.length} reportes</summary>
+            <div class="inside">
+              <p>${escapeHtml(group.focus)}</p>
+              <div class="download-list">
+                ${docs.map(doc => `<a class="btn" href="${doc.href}" download><span>${escapeHtml(doc.career)}</span><span>Descargar PDF</span></a>`).join("")}
+              </div>
+            </div>
+          </details>
+        `;
+      }).join("");
+    }
+
+    function renderSummaryTable() {
+      const body = document.getElementById("summaryTable");
+      body.innerHTML = documents
+        .slice()
+        .sort((a, b) => collator.compare(a.career, b.career))
+        .map(doc => `
+          <tr style="${styleFor(doc.group)}">
+            <td><strong>${escapeHtml(doc.career)}</strong></td>
+            <td><span class="pill">${escapeHtml(doc.group)}</span></td>
+            <td>${escapeHtml(doc.metrics.matriculaTotal2026)}</td>
+            <td>${escapeHtml(doc.metrics.matriculaNueva2026)}</td>
+            <td>${escapeHtml(doc.metrics.ocupacionRegular2026)}</td>
+            <td>${escapeHtml(doc.metrics.retencionPrimerAno2025)}</td>
+            <td>${doc.criticalCount}</td>
+            <td><a class="btn primary" href="${doc.href}" download>Descargar PDF</a></td>
+          </tr>
+        `).join("");
+    }
+
+    function renderGlossary() {
+      document.getElementById("glossaryList").innerHTML = payload.glossary.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+    }
+
+    function activateNavigation() {
+      const links = Array.from(document.querySelectorAll(".nav-links a"));
+      const sections = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          links.forEach(link => link.classList.toggle("activo", link.getAttribute("href") === `#${entry.target.id}`));
+        });
+      }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.01 });
+      sections.forEach(section => observer.observe(section));
+    }
+
+    function activateSectionControls() {
+      const ids = ["inicio", "reportes", "metodo"];
+      let active = 0;
+      const status = document.getElementById("presentationStatus");
+      const go = delta => {
+        active = Math.max(0, Math.min(ids.length - 1, active + delta));
+        document.getElementById(ids[active]).scrollIntoView({ behavior: "smooth" });
+        status.textContent = `${active + 1}/${ids.length}`;
+      };
+      document.getElementById("prevSection").addEventListener("click", () => go(-1));
+      document.getElementById("nextSection").addEventListener("click", () => go(1));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          active = ids.indexOf(entry.target.id);
+          status.textContent = `${active + 1}/${ids.length}`;
+        });
+      }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
+      ids.forEach(id => observer.observe(document.getElementById(id)));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderReports();
+      renderGlossary();
+      activateNavigation();
+      activateSectionControls();
+
+      document.getElementById("searchInput").addEventListener("input", event => {
+        activeSearch = event.target.value;
+        renderReports();
+      });
+
+      document.getElementById("sortSelect").addEventListener("change", event => {
+        activeSort = event.target.value;
+        renderReports();
+      });
+
+      document.getElementById("dimensionSwitch").addEventListener("click", event => {
+        const button = event.target.closest("[data-view]");
+        if (!button) return;
+        activeView = button.dataset.view;
+        renderReports();
+      });
+
+      document.getElementById("groupFilters").addEventListener("click", event => {
+        const button = event.target.closest("[data-group]");
+        if (!button) return;
+        activeGroup = button.dataset.group;
+        renderReports();
+      });
+    });
+  </script>
+</body>
+</html>
